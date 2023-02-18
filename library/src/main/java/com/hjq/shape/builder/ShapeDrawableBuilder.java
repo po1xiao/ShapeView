@@ -3,6 +3,7 @@ package com.hjq.shape.builder;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
@@ -696,9 +697,12 @@ public final class ShapeDrawableBuilder {
     public void intoBackground() {
         // 获取到的 Drawable 有可能为空
         Drawable drawable = buildBackgroundDrawable();
+        // 需要关闭硬件加速，否则虚线或者阴影在某些手机上面无法生效
         if (isDashLineEnable() || isShadowEnable()) {
-            // 需要关闭硬件加速，否则虚线或者阴影在某些手机上面无法生效
-            mView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            // 深色模式的值为:0x21 浅色模式的值为:0x11，某些手机上深色模式用软件渲染颜色会无法转换
+            if (mView.getResources().getConfiguration().uiMode != 0x21) {
+                mView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            }
         }
         mView.setBackground(drawable);
     }

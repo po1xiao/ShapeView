@@ -504,7 +504,9 @@ public class ShapeDrawable extends Drawable {
             if (mShadowPaint == null) {
                 mShadowPaint = new Paint();
                 mShadowPaint.setColor(Color.TRANSPARENT);
-                mShadowPaint.setStyle(Paint.Style.STROKE);
+                //modify 修改阴影效果
+                mShadowPaint.setStyle(Paint.Style.FILL);
+                mShadowPaint.setAntiAlias(true);
             }
 
             if (haveStroke) {
