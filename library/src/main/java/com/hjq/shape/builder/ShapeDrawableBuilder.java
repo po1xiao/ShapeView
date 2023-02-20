@@ -16,10 +16,10 @@ import com.hjq.shape.drawable.ShapeType;
 import com.hjq.shape.styleable.IShapeDrawableStyleable;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/ShapeView
- *    time   : 2021/08/28
- *    desc   : ShapeDrawable 构建类
+ * author : Android 轮子哥
+ * github : https://github.com/getActivity/ShapeView
+ * time   : 2021/08/28
+ * desc   : ShapeDrawable 构建类
  */
 public final class ShapeDrawableBuilder {
 
@@ -106,23 +106,17 @@ public final class ShapeDrawableBuilder {
 
         if (typedArray.hasValue(styleable.getSolidStartColorStyleable()) && typedArray.hasValue(styleable.getSolidEndColorStyleable())) {
             if (typedArray.hasValue(styleable.getSolidCenterColorStyleable())) {
-                mSolidGradientColors = new int[] {typedArray.getColor(styleable.getSolidStartColorStyleable(), NO_COLOR),
-                        typedArray.getColor(styleable.getSolidCenterColorStyleable(), NO_COLOR),
-                        typedArray.getColor(styleable.getSolidEndColorStyleable(), NO_COLOR)};
+                mSolidGradientColors = new int[]{typedArray.getColor(styleable.getSolidStartColorStyleable(), NO_COLOR), typedArray.getColor(styleable.getSolidCenterColorStyleable(), NO_COLOR), typedArray.getColor(styleable.getSolidEndColorStyleable(), NO_COLOR)};
             } else {
-                mSolidGradientColors = new int[] {typedArray.getColor(styleable.getSolidStartColorStyleable(), NO_COLOR),
-                        typedArray.getColor(styleable.getSolidEndColorStyleable(), NO_COLOR)};
+                mSolidGradientColors = new int[]{typedArray.getColor(styleable.getSolidStartColorStyleable(), NO_COLOR), typedArray.getColor(styleable.getSolidEndColorStyleable(), NO_COLOR)};
             }
         }
 
         if (typedArray.hasValue(styleable.getStrokeStartColorStyleable()) && typedArray.hasValue(styleable.getStrokeEndColorStyleable())) {
             if (typedArray.hasValue(styleable.getStrokeCenterColorStyleable())) {
-                mStrokeGradientColors = new int[] {typedArray.getColor(styleable.getStrokeStartColorStyleable(), NO_COLOR),
-                        typedArray.getColor(styleable.getStrokeCenterColorStyleable(), NO_COLOR),
-                        typedArray.getColor(styleable.getStrokeEndColorStyleable(), NO_COLOR)};
+                mStrokeGradientColors = new int[]{typedArray.getColor(styleable.getStrokeStartColorStyleable(), NO_COLOR), typedArray.getColor(styleable.getStrokeCenterColorStyleable(), NO_COLOR), typedArray.getColor(styleable.getStrokeEndColorStyleable(), NO_COLOR)};
             } else {
-                mStrokeGradientColors = new int[] {typedArray.getColor(styleable.getStrokeStartColorStyleable(), NO_COLOR),
-                        typedArray.getColor(styleable.getStrokeEndColorStyleable(), NO_COLOR)};
+                mStrokeGradientColors = new int[]{typedArray.getColor(styleable.getStrokeStartColorStyleable(), NO_COLOR), typedArray.getColor(styleable.getStrokeEndColorStyleable(), NO_COLOR)};
             }
         }
 
@@ -321,8 +315,7 @@ public final class ShapeDrawableBuilder {
     }
 
     public boolean isSolidGradientColors() {
-        return mSolidGradientColors != null &&
-                mSolidGradientColors.length > 0;
+        return mSolidGradientColors != null && mSolidGradientColors.length > 0;
     }
 
     public void clearSolidGradientColors() {
@@ -348,8 +341,7 @@ public final class ShapeDrawableBuilder {
     }
 
     public boolean isStrokeGradientColors() {
-        return mStrokeGradientColors != null &&
-                mStrokeGradientColors.length > 0;
+        return mStrokeGradientColors != null && mStrokeGradientColors.length > 0;
     }
 
     public void clearStrokeGradientColors() {
@@ -578,14 +570,11 @@ public final class ShapeDrawableBuilder {
     }
 
     public Drawable buildBackgroundDrawable() {
-        boolean hasSolidColorState = mSolidPressedColor != null || mSolidCheckedColor != null ||
-                mSolidDisabledColor != null || mSolidFocusedColor != null || mSolidSelectedColor != null;
+        boolean hasSolidColorState = mSolidPressedColor != null || mSolidCheckedColor != null || mSolidDisabledColor != null || mSolidFocusedColor != null || mSolidSelectedColor != null;
 
-        boolean hasStrokeColorState = mStrokePressedColor != null || mStrokeCheckedColor != null ||
-                mStrokeDisabledColor != null || mStrokeFocusedColor != null || mStrokeSelectedColor != null;
+        boolean hasStrokeColorState = mStrokePressedColor != null || mStrokeCheckedColor != null || mStrokeDisabledColor != null || mStrokeFocusedColor != null || mStrokeSelectedColor != null;
 
-        if (!isSolidGradientColors() && !isStrokeGradientColors() &&
-                mSolidColor == NO_COLOR && !hasSolidColorState && mStrokeColor == NO_COLOR && !hasStrokeColorState) {
+        if (!isSolidGradientColors() && !isStrokeGradientColors() && mSolidColor == NO_COLOR && !hasSolidColorState && mStrokeColor == NO_COLOR && !hasStrokeColorState) {
             // 啥都没有设置，直接 return
             return null;
         }
@@ -640,37 +629,21 @@ public final class ShapeDrawableBuilder {
         return stateListDrawable;
     }
 
-    public void refreshShapeDrawable(ShapeDrawable drawable,
-                                     @Nullable Integer solidStateColor,
-                                     @Nullable Integer strokeStateColor) {
-        drawable.setShape(mShape)
-                .setSize(mShapeWidth, mShapeHeight)
-                .setRadius(mTopLeftRadius, mTopRightRadius, mBottomLeftRadius, mBottomRightRadius)
-                .setUseLevel(mUseLevel)
-                .setStrokeWidth(mStrokeWidth)
-                .setStrokeDash(mDashWidth, mDashGap);
+    public void refreshShapeDrawable(ShapeDrawable drawable, @Nullable Integer solidStateColor, @Nullable Integer strokeStateColor) {
+        drawable.setShape(mShape).setSize(mShapeWidth, mShapeHeight).setRadius(mTopLeftRadius, mTopRightRadius, mBottomLeftRadius, mBottomRightRadius).setUseLevel(mUseLevel).setStrokeWidth(mStrokeWidth).setStrokeDash(mDashWidth, mDashGap);
 
-        drawable.setGradientAngle(mAngle)
-                .setGradientType(mGradientType)
-                .setGradientRadius(mGradientRadius)
-                .setGradientCenter(mCenterX, mCenterY);
+        drawable.setGradientAngle(mAngle).setGradientType(mGradientType).setGradientRadius(mGradientRadius).setGradientCenter(mCenterX, mCenterY);
 
-        drawable.setShadowSize(mShadowSize)
-                .setShadowColor(mShadowColor)
-                .setShadowOffsetX(mShadowOffsetX)
-                .setShadowOffsetY(mShadowOffsetY);
+        drawable.setShadowSize(mShadowSize).setShadowColor(mShadowColor).setShadowOffsetX(mShadowOffsetX).setShadowOffsetY(mShadowOffsetY);
 
-        drawable.setInnerRadiusRatio(mInnerRadiusRatio)
-                .setInnerRadius(mInnerRadius)
-                .setThicknessRatio(mThicknessRatio)
-                .setThickness(mThickness);
+        drawable.setInnerRadiusRatio(mInnerRadiusRatio).setInnerRadius(mInnerRadius).setThicknessRatio(mThicknessRatio).setThickness(mThickness);
 
         drawable.setLineGravity(mLineGravity);
 
         // 填充色设置
         if (solidStateColor != null) {
             drawable.setSolidColor(solidStateColor);
-        } else if (isSolidGradientColors()){
+        } else if (isSolidGradientColors()) {
             drawable.setSolidColor(mSolidGradientColors);
         } else {
             drawable.setSolidColor(mSolidColor);
@@ -697,8 +670,8 @@ public final class ShapeDrawableBuilder {
     public void intoBackground() {
         // 获取到的 Drawable 有可能为空
         Drawable drawable = buildBackgroundDrawable();
-        // 需要关闭硬件加速，否则虚线或者阴影在某些手机上面无法生效
-        if (isDashLineEnable() || isShadowEnable()) {
+        // 需要关闭硬件加速，否则虚线或者阴影在某些手机上面无法生效(没有显式设置过LAYER_TYPE_NONE才设置)
+        if (mView.getLayerType() == View.LAYER_TYPE_NONE && (isDashLineEnable() || isShadowEnable())) {
             // 深色模式的值为:0x21 浅色模式的值为:0x11，某些手机上深色模式用软件渲染颜色会无法转换
             if (mView.getResources().getConfiguration().uiMode != 0x21) {
                 mView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
